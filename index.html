@@ -127,7 +127,7 @@
 					var stringSplit = strings[i].split(" ");
 					
 					if (stringSplit[0].includes('<strong>') && stringSplit[stringSplit.length-1].includes('</strong>')) {
-						id = strings[i].replace(/<strong>(.*?)<\/strong>/gi, '$1');
+						id = strings[i].replace(/<strong>(.*?)<\/strong>/gi, '$1').replace(/\s/gi,'-').toLowerCase();
 						headerID.push(id);
 						strings[i] = strings[i].replace(/<strong>/, '<h2' + ' id="' + id + '">');
 						strings[i] = strings[i].replace(/<\/strong>/, '<\/h2>');
