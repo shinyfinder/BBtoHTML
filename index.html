@@ -22,6 +22,10 @@
 		body {
 			background: rgb(200,200,200);
 		}
+
+		form {
+			padding: 10px;
+		}
 	</style>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -33,6 +37,10 @@
 			//e -> eacute
 			htmld = htmld.replace(/é/g, '&eacute;');
 			htmld = htmld.replace(/Poke/g, 'Pok&eacute;');
+
+			if(!document.getElementById("eAccent").checked) {
+				htmld = htmld.replace(/Pok&eacute;mon/gi, 'Pokemon');
+			}
 
 			// bold
 			htmld = htmld.replace(/\[b*?\]/gi, '<strong>');
@@ -106,6 +114,14 @@
 
 			htmld = htmld.replace(/\[spoiler.*?\]/gi, '');
 			htmld = htmld.replace(/\[\/spoiler.*?\]/gi, '');
+
+			// smogon sprites
+			if (document.getElementById("dexLink").checked) {
+				htmld = htmld.replace(/:(.*?):/gi, '<a href="/dex/ss/pokemon/$1" target="_blank"><img src="/dex/media/sprites/xyicons/$1.png" alt="$1 sprite" /></a>');	
+			} else {
+				htmld = htmld.replace(/:(.*?):/gi, '<img src="/dex/media/sprites/xyicons/$1.png" alt="$1 sprite" />');	
+			}
+			
 
 			// color	
 			htmld = htmld.replace(/\[color=(.*?)\s*\](.*?)\[\/color\]/gi, '<span style="color:$1;">$2</span>');
@@ -234,6 +250,7 @@
 		<li>Hide tags (see limitations)</li>
 		<li>Table of contents (see header limitations)</li>
 		<li>e &rarr; &eacute;</li>
+		<li>Link Smogon sprites to respective dex page (see limitations)</li>
 	</ul>
 
 	<h3>Limitations</h3>
@@ -244,13 +261,25 @@
 		<li>Hide tags with declared texts are considered headers, subject to the above limitation.</li>
 		<li>Images are included if an external (valid) link exists. Alt text is always MISSING IMAGE. Attachments are not supported, and the tags are regurgitated in the output. Naturally, these will need to be uploaded anyway, so this is a reminder to do so.</li>
 		<li>Code tags and spoilers are currently unsupported.</li>
+		<li>Linking to the dex page currently only supports the current generation (SwSh)</li>
 		<li><strong>This tool is not meant to replace proper HTMLing; it is a supplement to save time. Always check over the output.</strong></li>
 		<li>The HTML result will likely not look pretty. That's your job ;)</li>
 	</ul>
+
+
 	<h2>BB Code: </h2>
 	<textarea id="bbIn"></textarea>
 	<br />
-	<button type="button" onclick="bbConvert()">Convert!</button>
+		<form>
+		<input type="checkbox" name="eAccent" id="eAccent">
+		<label for="eAccent">Convert e to &eacute;</label>
+		<br />
+		<input type="checkbox" name="dexLink" id="dexLink">
+		<label for="dexLink">Link sprites to dex pages</label>
+		<br />
+		<button type="button" onclick="bbConvert()">Convert!</button>
+	</form>
+	
 
 	<h2>HTML: </h2>
 	<textarea id="HTMLOut" readonly></textarea>
