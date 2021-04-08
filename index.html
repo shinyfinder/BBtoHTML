@@ -30,6 +30,10 @@
 			const orig = document.getElementById("bbIn").value;
 			var htmld = orig;
 
+			//e -> eacute
+			htmld = htmld.replace(/é/g, '&eacute;');
+			htmld = htmld.replace(/Poke/g, 'Pok&eacute;');
+
 			// bold
 			htmld = htmld.replace(/\[b*?\]/gi, '<strong>');
 			htmld = htmld.replace(/\[\/b\]/gi, '</strong>');
@@ -114,7 +118,8 @@
 			var headerID = [];
 			var id = [];
 			var tocTitle;
-			var tocTitleArr = []
+			var tocTitleArr = [];
+			var idPoke = [];
 
 			for (var i=0; i < strings.length; i++) {
 				if(strings[i] && strings[i] != '\n') {
@@ -132,8 +137,9 @@
 						tocTitle = strings[i].replace(/<strong>(.*?)<\/strong>/gi, '$1');
 						tocTitleArr.push(tocTitle);
 						id = strings[i].replace(/<strong>(.*?)<\/strong>/gi, '$1').replace(/\s/gi,'-').toLowerCase();
-						headerID.push(id);
-						strings[i] = strings[i].replace(/<strong>/, '<h2' + ' id="' + id + '">');
+						idPoke = id.replace(/&eacute;/g, 'e');
+						headerID.push(idPoke);
+						strings[i] = strings[i].replace(/<strong>/, '<h2' + ' id="' + idPoke + '">');
 						strings[i] = strings[i].replace(/<\/strong>/, '<\/h2>');
 						isExcluded = 1;
 					}
@@ -221,6 +227,7 @@
 		<li>Color declarations</li>
 		<li>Hide tags (see limitations)</li>
 		<li>Table of contents (see header limitations)</li>
+		<li>e &rarr; &eacute;</li>
 	</ul>
 
 	<h3>Limitations</h3>
