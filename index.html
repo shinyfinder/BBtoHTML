@@ -94,12 +94,18 @@
 			htmld = htmld.replace(/\[font=(.*?).*?\]/gi, '');
 			htmld = htmld.replace(/\[\/font.*?\]/gi, '');
 
-			// ignore hide tags
+			// ignore hide/spoiler tags
 			htmld = htmld.replace(/\[hide=(.*?)\]/gi, '<strong>$1</strong>\n');
 			htmld = htmld.replace(/\[\/hide.*?\]/gi, '');
 
 			htmld = htmld.replace(/\[hide.*?\]/gi, '');
-			htmld = htmld.replace(/\[\/hide.*?\]/gi, '');					
+			htmld = htmld.replace(/\[\/hide.*?\]/gi, '');
+
+			htmld = htmld.replace(/\[spoiler=(.*?)\]/gi, '<strong>$1</strong>\n');
+			htmld = htmld.replace(/\[\/spoiler.*?\]/gi, '');
+
+			htmld = htmld.replace(/\[spoiler.*?\]/gi, '');
+			htmld = htmld.replace(/\[\/spoiler.*?\]/gi, '');
 
 			// color	
 			htmld = htmld.replace(/\[color=(.*?)\s*\](.*?)\[\/color\]/gi, '<span style="color:$1;">$2</span>');
