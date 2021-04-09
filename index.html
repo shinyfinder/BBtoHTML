@@ -75,7 +75,7 @@
 			// links
 			
 			htmld = htmld.replace(/\[url=\'([^\s\]]+)\s*\'\](.*?)\[\/url\]/gi, '<a href="$1">$2</a>');
-			htmld = htmld.replace(/https:\/\/www\.smogon\.com/gi, '');
+			htmld = htmld.replace(/(https?):\/\/www\.smogon\.com/gi, '');
 
 			// users
 			//htmld = htmld.replace(/\[user=([^\s\]]+)\s*\](.*(?=\[\/user\]))\[\/user\]/gi, '<a href="/forums/members/$2.$1">$2</a>'); 
@@ -117,9 +117,9 @@
 
 			// smogon sprites
 			if (document.getElementById("dexLink").checked) {
-				htmld = htmld.replace(/:(.*?):/gi, '<a href="/dex/ss/pokemon/$1" target="_blank"><img src="/dex/media/sprites/xyicons/$1.png" alt="$1 sprite" /></a>');	
+				htmld = htmld.replace(/^:(.*?):$/gi, '<a href="/dex/ss/pokemon/$1" target="_blank"><img src="/dex/media/sprites/xyicons/$1.png" alt="$1 sprite" /></a>');	
 			} else {
-				htmld = htmld.replace(/:(.*?):/gi, '<img src="/dex/media/sprites/xyicons/$1.png" alt="$1 sprite" />');	
+				htmld = htmld.replace(/^:(.*?):$/gi, '<img src="/dex/media/sprites/xyicons/$1.png" alt="$1 sprite" />');	
 			}
 			
 
