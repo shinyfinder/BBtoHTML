@@ -74,7 +74,7 @@
 
 			// links
 			
-			htmld = htmld.replace(/\[url=\'([^\s\]]+)\s*\'\](.*?)\[\/url\]/gi, '<a href="$1">$2</a>');
+			htmld = htmld.replace(/\[url=\'([^\s\]]+)\s*\'\](.*?)\[\/url\]/gi, '<a href="$1" target="_blank">$2</a>');
 			htmld = htmld.replace(/(https?):\/\/www\.smogon\.com/gi, '');
 
 			// users
@@ -206,7 +206,7 @@
 
 			strOut = strOut.join('\n\n');
 
-			var smogFormat = '[title]\nWrite the title of the article here.\n\n[head]\n<meta name="description" content="Write a short description of the article here" />\n\n<link rel="stylesheet" href="../stylesheet.css" />\n\n<style type="text/css">\nWrite your CSS (if needed) here. If you do not have to include any sort of CSS, do not add the <style> tag.\n</style>\n\n[page]\n<div class="author">By <a href="/forums/members/MemberName.number">Author\'s Name</a>. Art by <a href="/forums/members/MemberName.number">Artist\'s Name</a>.</div>\n\n';
+			var smogFormat = '[title]\nWrite the title of the article here.\n\n[head]\n<meta name="description" content="Write a short description of the article here" />\n\n<link rel="stylesheet" href="../stylesheet.css" />\n\n<style type="text/css">\nWrite your CSS (if needed) here. If you do not have to include any sort of CSS, do not add the <style> tag.\n</style>\n\n[page]\n<div class="author">By <a href="/forums/members/MemberName.number">Author\'s Name</a>. Art by <a href="/forums/members/MemberName.number">Artist\'s Name</a>.</div>\n<!--HTML generated using shiny finder\'s script: https://shinyfinder.github.io/BBtoHTML/-->\n\n';
 			
 
 			// Table of Contents
