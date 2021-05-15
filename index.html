@@ -50,8 +50,8 @@
 			htmld = htmld.replace(/\[\/i\]/gi, '</em>');
 
 			// underline
-			htmld = htmld.replace(/\[u*?\]/gi, '<u>');
-			htmld = htmld.replace(/\[\/u*?\]/gi, '</u>');
+			htmld = htmld.replace(/\[u*?\]/gi, '<ins>');
+			htmld = htmld.replace(/\[\/u*?\]/gi, '</ins>');
 
 			// strikethrough
 			htmld = htmld.replace(/\[s*?\]/gi, '<del>');
@@ -74,7 +74,7 @@
 
 			// links
 			
-			htmld = htmld.replace(/\[url=\'([^\s\]]+)\s*\'\](.*?)\[\/url\]/gi, '<a href="$1" target="_blank">$2</a>');
+			htmld = htmld.replace(/\[url=\'https?:([^\s\]]+)\s*\'\](.*?)\[\/url\]/gi, '<a href="$1" target="_blank">$2</a>');
 			htmld = htmld.replace(/(https?):\/\/www\.smogon\.com/gi, '');
 
 			// users
@@ -122,6 +122,11 @@
 				htmld = htmld.replace(/^:(.*?):$/gi, '<img src="/dex/media/sprites/xyicons/$1.png" alt="$1 sprite" />');	
 			}
 			
+			// curly to ascii quotes
+			htmld = htmld.replace(/“/gi, '"');
+			htmld = htmld.replace(/”/gi, '"');
+			htmld = htmld.replace(/‘/gi, '\'');
+			htmld = htmld.replace(/’/gi, '\'');
 
 			// color	
 			htmld = htmld.replace(/\[color=(.*?)\s*\](.*?)\[\/color\]/gi, '<span style="color:$1;">$2</span>');
@@ -251,6 +256,8 @@
 		<li>Table of contents (see header limitations)</li>
 		<li>e &rarr; &eacute;</li>
 		<li>Link Smogon sprites to respective dex page (see limitations)</li>
+		<li>All URLs are made protocol agnostic (http:/https: removed);</li>
+		<li>Curly to ASCII quotes</li>
 	</ul>
 
 	<h3>Limitations</h3>
