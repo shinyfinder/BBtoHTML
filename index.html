@@ -117,9 +117,9 @@
 
 			// smogon sprites
 			if (document.getElementById("dexLink").checked) {
-				htmld = htmld.replace(/^:(.*?):$/gi, '<a href="/dex/ss/pokemon/$1" target="_blank"><img src="/dex/media/sprites/xyicons/$1.png" alt="$1 sprite" /></a>');	
+				htmld = htmld.replace(/:(.*?): (.+\s*?)/gi, '<div class="vr"><div class="sprite"><img src="/dex/media/sprites/xyicons/$1.png" alt="$1 sprite" /></div><a href="/dex/ss/pokemon/$1" target="_blank">$2</a></div>');	
 			} else {
-				htmld = htmld.replace(/^:(.*?):$/gi, '<img src="/dex/media/sprites/xyicons/$1.png" alt="$1 sprite" />');	
+				htmld = htmld.replace(/:(.*?): (.+\s*?)/gi, '<img src="/dex/media/sprites/xyicons/$1.png" alt="$1 sprite" /> <p>$2</p>');	
 			}
 			
 			// curly to ascii quotes
