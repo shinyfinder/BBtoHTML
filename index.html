@@ -75,7 +75,7 @@
 			// links
 			
 			htmld = htmld.replace(/\[url=\'https?:([^\s\]]+)\s*\'\](.*?)\[\/url\]/gi, '<a href="$1" target="_blank">$2</a>');
-			htmld = htmld.replace(/(https?):\/\/www\.smogon\.com/gi, '');
+			htmld = htmld.replace(/\/\/www\.smogon\.com/gi, '');
 
 			// users
 			//htmld = htmld.replace(/\[user=([^\s\]]+)\s*\](.*(?=\[\/user\]))\[\/user\]/gi, '<a href="/forums/members/$2.$1">$2</a>'); 
@@ -117,7 +117,16 @@
 
 			// smogon sprites
 			if (document.getElementById("dexLink").checked) {
-				htmld = htmld.replace(/:(.*?): (.+\s*?)/gi, '<div class="vr"><div class="sprite"><img src="/dex/media/sprites/xyicons/$1.png" alt="$1 sprite" /></div><a href="/dex/ss/pokemon/$1" target="_blank">$2</a></div>');	
+				htmld = htmld.replace(/:(.*?): (.+\s*?)?/gi, '<div class="vr"><div class="sprite"><img src="/dex/media/sprites/xyicons/$1.png" alt="$1 sprite" /></div><a href="/dex/ss/pokemon/$1" target="_blank">$2</a></div>');
+
+				htmld = htmld.replace(/:(.*?):/gi, function (match) {
+					match = match.slice(1,-1);
+					var txt = match;
+
+					return '<div class="vr"><div class="sprite"><img src="/dex/media/sprites/xyicons/'+ match +'.png" alt="' + match + ' sprite" /></div> <a href="/dex/ss/pokemon/' + match + '" target="_blank">' + txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase() + '</a></div>'
+				});
+				/*
+				htmld = htmld.replace(/:(.*?):/gi, '<img src="/dex/media/sprites/xyicons/$1.png" alt="$1 sprite" /> <a href="/dex/ss/pokemon/$1" target="_blank">$1</a>');*/
 			} else {
 				htmld = htmld.replace(/:(.*?): (.+\s*?)/gi, '<img src="/dex/media/sprites/xyicons/$1.png" alt="$1 sprite" /> <p>$2</p>');	
 			}
