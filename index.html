@@ -123,7 +123,21 @@
 					match = match.slice(1,-1);
 					var txt = match;
 
-					return '<div class="vr"><div class="sprite"><img src="/dex/media/sprites/xyicons/'+ match +'.png" alt="' + match + ' sprite" /></div> <a href="/dex/ss/pokemon/' + match + '" target="_blank">' + txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase() + '</a></div>'
+					return '<div class="vr"><div class="sprite"><img src="/dex/media/sprites/xyicons/'+ match +'.png" alt="' + match + ' sprite" /></div> <a href="/dex/ss/pokemon/' + match + '" target="_blank">' + capDash(txt) + '</a></div>';
+
+
+					function capDash(str) {
+						console.log(str);
+						var strArray = [];
+						const strSplit = str.split('-');
+						console.log(strSplit);
+						for (var i = 0; i < strSplit.length; i++) {
+							strArray.push(strSplit[i].charAt(0).toUpperCase()+strSplit[i].substr(1).toLowerCase());
+						}
+						console.log(strArray);
+						return strArray.join("-");
+					}
+
 				});
 				/*
 				htmld = htmld.replace(/:(.*?):/gi, '<img src="/dex/media/sprites/xyicons/$1.png" alt="$1 sprite" /> <a href="/dex/ss/pokemon/$1" target="_blank">$1</a>');*/
